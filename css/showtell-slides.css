@@ -123,10 +123,12 @@ a:link, a:visited {
   color: (internal value);
   text-decoration: underline;
   cursor: auto;
+  z-index: 100;
 }
 
 a:link:active, a:visited:active { 
   color: (internal value);
+  z-index: 100;  
 }
 
 a {
