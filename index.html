@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Deep Learn: Word Embeddings | Hazel Martindale</title>
+
+    <meta name="description" content="Deep Learn: Word Embeddings" />
+    <meta name="author" content="Hazel Martindale" />
+    <link rel="stylesheet" href="css/github.css">
+
+
+    <!--
+        Styles specific for this example presentation.
+    -->
+    <link href="css/markdown-slides.css" rel="stylesheet" />
+    <link href="css/devopsy.css" rel="stylesheet" />
+    <link href="css/effects.css" rel="stylesheet" />
+
+</head>
+
+<body class="impress-not-supported">
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress" data-transition-duration="1000">
+
+<div id="title" class="step slide" data-x=0 data-y=0 data-scale=1 >
+	<h1> Word Embeddings and Language Modelling</h1>
+	<h3>Mikolov, Bojanowski, Xu,</h3> 
+	<div><h6 align="middle">DeepLearn 2019 </h5></div>
+	<p style="font-size:26px;" text-align="center">The ONS makes <img src="images/title_image.png" width="450px" align="middle" >  statistics</p>
+</div>
+
+<div id="deeplearnintro" class="step slide" data-x ="-300" data-y="250" data-scale="0.05">
+	<h1>DeepLearn2019</h1>
+	<ul>
+		<li class="substep" style="font-size:24t;">Deep learning week long summer school in Warsaw</li>
+		<li class="substep" style="font-size:24t;">Covered many area of deep learning</li>
+		<li class="substep" style="font-size:24t;"> Organised by IRDTA: Institute for Research Development, Training and Advice</li>
+		<li class="substep" style="font-size:24t;"><p><a href="https://bigdat2020.irdta.eu">BigDat2020 winter school on big data</a></p></li>
+	</ul>
+	<ul>
+		<li class="substep" style="font-size:30pt;"> 2 sessions about word embeddings:</li>
+			<ul>
+				<li class="substep" style="font-size:24pt;">Using Neural Networks for Modeling and Representing Natural Languages: Tomas Mikolov and Piotr Bojanowski</li>
+				<li class="substep" style="font-size:24pt;">Multi-resolution Models for Learning Multilevel Abstract Representations of Text: Xiaowei Xu</li>
+			</ul>
+	</ul>
+</div>	
+
+<div id="whytext" class="step slide" data-x ="-240" data-y="250"  data-scale="0.05">
+	<h1>Introduction</h1>
+	<ul>
+		<li class="substep" style="font-size:30pt;">Text processing is very important and the core business of internet companies</li>
+		<li class="substep" style="font-size:30pt;">Machine learning and natural language processing techniques are applied to big datasets to improve many tasks</li>
+
+		<li class="substep" style="font-size:30pt;">Much of the data in potential new ONS data sources is in the form of text</li>
+	</ul>
+</div>
+
+<div id="title1" class="step slide" data-x=0 data-y=0 data-scale=1 >
+	<div> <h1> Word Embeddings and Language Modelling</h1></div>
+	<div><h3>Mikolov, Bojanowski, Xu,</h3> </div>
+	<div><h6 align="middle">DeepLearn 2019 </h5></div>
+	<p style="font-size:26px;" text-align="center">The ONS makes <img src="images/title_image.png" width="450px" align="middle" >  statistics</p>
+</div>
+
+
+<div id="suboverview1" class="step slide" data-x="0" data-y="220" data-scale="0.3" style="pointer-events: none;">
+</div>
+
+<div id="word2vec1" class="step slide" data-x="-50" data-y="170" data-scale="0.01" >
+	<h2>word2vec</h2>
+	<ul style="list-style-type:none;">
+		<li class="substep"><img src="images/shallow_network.PNG" width="700px" align="middle"></li>
+	</ul>
+	<ul>
+		<li class="substep">A shallow (one hidden layer) neural network.</li>
+		<li class="substep">Training the network to predict the next word</li>
+		<li class="substep">Word vectors (or embeddings) are matrix between the input and hidden layer</li>
+	</ul>
+</div>
+
+<div id="word2vec2" class="step slide " data-x="-30" data-y="170" data-scale="0.01" >
+	<h2 style="font-size:30pt;">Two modes of prediction words</h2>
+	<ol>
+		<li class="substep">Skip-gram: model probability of the context given a word</li>
+			<ul>
+				<li class="substep">skip-gram is slower but better for more infrequent words</li>
+			</ul>
+			<ul style="list-style-type:none;">
+				<li class="substep"><img src="images/skipgram.PNG" width="700px" align="middle" ></li>
+			</ul>
+
+		<li class="substep">Cbow: model probability of word given context</li>
+		<ul>
+			<li class="substep">Cbow is faster for large corpora</li>
+		</ul>
+		<ul style="list-style-type:none;">
+			<li class="substep"><img src="images/cbow.PNG" width="700px" align="middle" ></li>
+		</ul>
+		</ul>
+	</ol>
+</div>
+
+<div id="word2vec3" class="step slide " data-x="0" data-y="170" data-scale="0.01" >
+	<h2>Training Considerations</h2>
+	<ul>
+		<li class="substep">Neural network is trained using standard stochastic gradient descent and back propagation</li>
+		<li class="substep">Learning rate is a very important parameter to tune, usually start high and get smaller. </li>
+		<li class="substep">Number of training epochs - smaller training set more epochs</li>
+		<li class="substep">Consider regularisation - is possible for network to 'memorize' training data</li>
+		<li class="substep">All parameters need tuning when producing a model </li>
+		<li class="substep">Pre-trained word vectors provide generalization for systems trained with limited amount of supervised data</li>
+	</ul>
+</div>
+
+<div id="word2vec4" class="step slide" data-x="30" data-y="170" data-scale="0.01" >
+	<h2>How should you evaluate the word vectors?</h2>
+	<ul style="list-style-type:none;">
+		<li class="substep"><img src="images/word_regularities.PNG" width="800px"></li>
+	</ul>
+</div>
+
+<div id="word2vec5" class="step slide" data-x="60" data-y="170" data-scale="0.01" >
+	<h2>Word regularities might give better assesment of the word vectors</h2>
+	<ul>
+		<li class="substep">Analogies: </li>
+		<ul>
+			<li class="substep">good : better  &rArr;  rough : ___</li>
+			<li class="substep">see : saw  &rArr;	 return : ___	</li>
+		</ul>
+		<li class="substep">Questions datasets:</li>
+		<ul>
+			<li class="substep">Athens:Greece 	&rArr;  Oslo: ___ </li>
+			<li class="substep">possibly:impossibly	&rArr;  ethical: ___ </li>
+		</ul>
+	<li class="substep">Assessment data sets avalible from word2vec/fastText websites</li>
+	</ul>
+ </div>
+ 
+<div id="word2vec6" class="step slide" data-x="90" data-y="170" data-scale="0.01" >
+	<h2>Also can do word 'algebra'</h2>
+	<ul style="list-style-type:none;">
+		<li class="substep"><img src="images/word_algebra.PNG" width="800px"></li>
+	</ul>
+</div>
+
+
+<div id="suboverview2" class="step slide" data-x="0" data-y="220" data-scale="0.3" style="pointer-events: none;">
+</div>
+
+
+<div id="fasttextintro" class="step slide" data-x="-50" data-y="220" data-scale="0.01" >
+
+<h1 >fastText</h1>
+<ul>
+<li class="substep">Enriching Word Vectors with Subword Information Bojanowski, Grave, Joulin, Mikolov. TACL 2017 </li>
+<li class="substep"> An extension to word2vec - includes character level information</li>
+<li class="substep">Developed at Facebook</li>
+</ul>
+</div>
+
+<div id="fasttext1" class="step slide " data-x="-30" data-y="220" data-scale="0.01" >
+<h2>Subword information</h2>
+<ul>
+<li class="substep">Important for suffixes and grammatical varations</li>
+<li class="substep">Allows the building of out of vocabulary words out of n-grams</li>
+<li class="substep">Even more important in non english e.g. Polish declension</li>
+<li class="substep">Add special positional characters for prefix suffix</li>
+</ul>
+<ul style="list-style-type:none;">
+<li class="substep"><img src="images/subwords.PNG" width="450px" align="middle" ></li>
+</ul>
+</div>
+
+<!-- <div id="fasttext2" class="step slide" data-x="0" data-y="220" data-scale="0.01" >
+<h3>Extensions to fastText</h3>
+<ul>
+<li class="substep">Advances in Pre-Training Distributed Word Representations: Mikolov2018 </li>
+<li class="substep"> Using some known tricks can improve word vectors</li>
+</ul>
+</div> -->
+
+
+<div id="fasttext3" class="step slide " data-x="30" data-y="220" data-scale="0.01" >
+	<h2 style="font-size=30">Training Techniques</h2>
+	<ul >
+		<li class="substep" style="font-size=26; width: 900px;">Advances in Pre-Training Distributed Word Representations: Mikolov2018 </li>
+		<li class="substep" style="font-size=28"> Using some known tricks can improve word vectors</li>
+	</ul>
+	<ul>
+		<li class="substep" style="font-size=28">Word embedding models require training on large data</li>
+		<li class="substep" style="font-size=28">Using Continuous bag-of-words with negative sampling</li>
+		<li class="substep" style="font-size=28">Remove duplicate sentences</li>
+		<li class="substep" style="font-size=28">Merge words with high mutual information (phrases)</li>
+		<ul>
+			<li class="substep" style="font-size=26">New York City &rarr; New_York_City</li>
+		</ul>
+		<li class="substep" style="font-size=28">Position-dependent weighting:</li>
+		<ul>
+			<li class="substep" style="font-size=28">Train poistion representation and use these to reweight the word vectors and produce context vectors</li>
+		</ul>
+	</ul>
+</div>
+
+<div id="fasttest4" class="step slide" data-x="60" data-y="220" data-scale="0.01" >
+	<h2>Pretrained fastText Overview</h2>
+	<ul>
+		<li class="substep">Facebook - Mikolov et.al. (2018)</li>
+		<li class="substep">Contextual mostly free</li>
+		<li class="substep">Dataset: Common Crawl</li>
+		<li class="substep">Embeddings: 1x300 dimensional word vectors</li>
+	</ul>
+</div>
+<div id="fasttest5" class="step slide" data-x="90" data-y="220" data-scale="0.01" >
+	<h2>fastText for language modelling and classification</h2>
+	<ul>
+		<li class="substep">Language Modelling: A statistical model of the probability model of language</li>
+		<li class="substep">All of the embedding models are a form of language model</li>
+	</ul>
+	<ul>
+		<li class="substep">fastText has classification option to train text classifiers from supervised data</li>
+		<li class="substep">Uses the neural network with a softmax or hierarchical softmax classifier on the output</li>
+	</ul>
+</div>
+
+<div id="suboverview3" class="step slide" data-x="0" data-y="220" data-scale="0.3" style="pointer-events: none;">
+</div>
+
+
+<div id="Elmo1" class="step slide" data-x="-50" data-y="270" data-scale="0.01" >
+<h2 style="font-size:29pt;">ELMo (Embeddings from Language Models)</h2>
+<ul>
+<li class="substep">ELMo uses both word and context information </li>
+<li class="substep">A word embedding depends on its context, words in different context have diffent embeddings</li>
+</ul>
+<ul style="list-style-type:none;">
+<li class="substep"><img src="images/elmo-embedding-robin-williams.png" width="600px" align="middle" ></img></li>
+</ul>
+</div>
+
+<div id="Elmo2" class="step slide" data-x="-30" data-y="270" data-scale="0.01" >
+<h2 style="font-size:29pt;">ELMo (Embeddings from Language Models)</h2>
+<ul>
+<li class="substep">Elmo uses Bi-directional LSTM models </li>
+<li class="substep">This means it trains a forward and backward language model</li>
+<li class="substep">Embedding come from combing all weights across the hidden layers and both models</li>
+
+</ul>
+<ul style="list-style-type:none;">
+<li class="substep"><img src="images/elmo-embeddings.PNG" width="700px" align="middle"></li>
+</ul>
+</div>
+
+<div id="Elmo3" class="step slide" data-x="0" data-y="270" data-scale="0.01" >
+<h2>Pretrained ELMo Overview</h2>
+<ul>
+<li class="substep">Washington Uni/Microsoft/Allen Inst - Peters et.al. (2018)</li>
+<li class="substep">Contextual, Bidirectional</li>
+<li class="substep">Dataset: 1Billion word Benchmark</li>
+<li class="substep">Embeddings: 3x1024 dimensional word matrices</li>
+</ul>
+<ul>
+<li class="substep">Developed bu the Allen Institute</li>
+<li class="substep">Avalible via PyTorch implementation as part of allennlp python module</li>
+</ul>
+</div>
+
+
+<div id="suboverview4" class="step slide" data-x="0" data-y="220" data-scale="0.3" style="pointer-events: none;">
+</div>
+
+
+<div id="Bert1" class="step slide" data-x="-50" data-y="320" data-scale="0.01" >
+
+<h2>BERT (Bidirectional Encoder Representations from Transformers)</h2>
+<div class="row">
+	<div class="column">
+		<ul style="list-style-type:none;">
+			<li class="substep"><img src='images/bert.png'></li>
+		</ul>
+	</div>
+	<div class="column">
+		<ul>
+			<li class="substep" style="font-size:18pt;">Generated huge interest and described as major breakthrough for NLP</li>
+			<li class="substep" style="font-size:18pt;">Is a deep learning technique using bidirectional transformers</li>
+			<li class="substep" style="font-size:18pt;">Not going to explain details about how BERT works</li>
+			<li class="substep" style="font-size:18pt;"><a href="http://jalammar.github.io/illustrated-bert/">Blog describing BERT: http://jalammar.github.io/illustrated-bert/</a></li>
+		</ul>
+	</div>
+</div>
+
+</div>
+
+<div id="Bert2" class="step slide " data-x="-30" data-y="320" data-scale="0.01" >
+<h2>How is BERT trained?</h2>
+
+		<ul>
+			<li class="substep" >BERT pre-trained on 2 tasks: Masked language model and Next sentence prediction</li>
+			<li class="substep" >Masked language model: hides 15% input words/tokens to reduce infomation leakage from bidirectional transformers</li>
+			<li class="substep" >Next sentence prediction: Classificaiton task to predict if the second sentence is the next sentence</li>
+		</ul>
+
+</div>
+
+<div id="Bert3" class="step slide" data-x="0" data-y="320" data-scale="0.01" >
+<h2>Using BERT for Embeddings</h2>
+<div class="row">
+	<div class="column">
+		<ul style="list-style-type:none;">
+			<li><img src='images/bert_embeddings.PNG' width='300px'></li>
+		</ul>
+	</div>
+	<div class="column">
+	<ul>
+	<li class="substep">Bert prduces possible word vectors at levels </li>
+	</ul>
+	</div>
+	</div>
+</div>
+
+<div id="Bert_embed" class="step slide" data-x="-1.5" data-y="319.875" data-scale="0.005" >
+	<div><img src='images/bert_embeddings.PNG' width='600px'></div>
+</div>
+
+<div id="Bert4" class="step slide" data-x="0" data-y="320" data-scale="0.01" >
+<h2>Using BERT for Embeddings</h2>
+	<div class="row">
+		<div class="column">
+			<ul style="list-style-type:none;">
+				<li><img src='images/bert_embeddings.PNG' width='300px'></li>
+			</ul>
+		</div>
+		<div class="column">
+			<ul>
+				<li class="substep" style="width: 500px;" >No hard rule for how to produce your word embeddings</li>
+				<li class="substep" width="100%" float="left" display="inline-block">Stil not obvious how to embed sentences</li>
+				<li class="substep" width="100%" float="left" display="inline-block">Suggest averaging tokens for the second to last hidden layer</li>
+			</ul>
+		</div>
+	</div>
+	<ul>
+		<li class="substep">BERT (and other contextual vectors) can't do word level similarity</li>
+		<li class="substep"><a href=">https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/">
+		https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/ </a></li>
+	</ul>
+</div>
+
+<div id="Bert5" class="step slide" data-x="30" data-y="320" data-scale="0.01" >
+<h2>Using BERT Fine tuning</h2>
+<ul>
+<li class="substep">Used to give state of art results</li>
+<li class="substep">Use your own training data to reweight the model</li>
+<li class="substep">Done with pharmaceutical work and improved results</li>
+<li class="substep">Either use the usual BERT methods or add own final classification layer</li>
+</ul>
+</div>
+
+
+<div id="Bert6" class="step slide" data-x="60" data-y="320" data-scale="0.01" >
+<h2>Pretrained BERT Base Overview</h2>
+<ul>
+<li class="substep">Google - Devlin et.al. (2018)</li>
+<li class="substep">Contextual, Bidirectional</li>
+<li class="substep">Dataset: Wikipedia + BookCorpus</li>
+<li class="substep">Embeddings: 24x768 dimensional word matrices</li>
+</ul>
+</div>
+
+
+
+<div id="title2" class="step slide" data-x="0" data-y="0" data-scale="1" style="pointer-events: none;">
+
+<div> <h1> Word Embeddings and Language Modelling</h1></div>
+<div><h3>Mikolov, Bojanowski, Xu,</h3> </div>
+<div><h6 align="middle">DeepLearn 2019 </h5></div>
+<p style="font-size:26px;" text-align="center">The ONS makes <img src="images/title_image.png" width="450px" align="middle" >  statistics</p>
+
+</div>
+
+<div id="multi_res" class="step slide" data-x="275" data-y="230" data-scale="0.01">
+<h2 style="font-size:34px;">Multi-Resolution Models for Learning Multilevel Abstract Representation of Text</h2>
+<h3 style="font-size:28px;">Xiaowei Xu</h3>
+<ul>
+<li class="substep">Using word vector each model has strengths and weeknesses</li>
+<li class="substep">Investigated using a mixture of all word embeddings</li>
+</ul>
+<ul style="list-style-type:none;">
+<li class="substep" align='middle'><img src='images/mr_illustration.PNG' width='400px'></li>
+</ul>
+</div>
+
+<div id="multi_res1" class="step slide" data-x="300" data-y="230" data-scale="0.01">
+<h2 style="font-size:34px;">Multi-Resolution Models for Learning Multilevel Abstract Representation of Text</h2>
+<ul style="list-style-type:none;">
+<li class="substep" align='middle'><img src='images/mr_diagram.PNG' width='400px'></li>
+</ul>
+<ul>
+<li class="substep">Trained a Neural Network to work out weighting mixtures for downstream task</li>
+<li class="substep">Produced improvement on an significantly improve the performance of ad-hoc retrieval task</li>
+</div>
+
+<div id="somequestions" class="step slide" data-x="330" data-y="230" data-scale="0.01">
+<h2>How could we use word embeddings and language model</h2>
+<ul>
+<li class="substep">Is it ok to just use one type of vector/model?</li>
+<li class="substep">Can we ever train our own fastText/word2vec models? and should we?</li>
+<li class="substep">How do we create sentence vectors?</li>
+	<ul>
+		<li class="substep">Average, sum, concatenate</li>
+		<li class="substep">Suggestion from Bojanowski: TF-IDF weighting of words</li>
+		<li class="substep">Suggestion from Miklov: do not build embeddings for longer than short phrases (5-6	words) they don't really work</li>
+	</ul>
+
+</ul>
+</div>
+
+<div id="somequestions2" class="step slide" data-x="360" data-y="230" data-scale="0.01">
+<h2>How could we use word embeddings and language model</h2>
+	<ul>
+	<li class="substep">Could we fine tune a BERT language model for a specific task? </li>
+		<ul>
+			<li class="substep">Would it improve the embeddings?</li>
+			<li class="substep">Is it worth the effort vs choosing an embedding layer?</li>
+		</ul>
+	</ul>
+</div>
+	
+<script type="text/javascript">
+var enableBwCss = function(){
+    disableDevopsCss();
+    disableEffectsCss();
+};
+
+var enableDevopsCss = function(){
+    document.body.classList.add("devopsy");
+    disableEffectsCss();
+};
+
+var disableDevopsCss = function(){
+    document.body.classList.remove("devopsy");
+};
+
+var enableEffectsCss = function(){
+    document.body.classList.add("effects");
+    disableDevopsCss();
+};
+
+var disableEffectsCss = function(){
+    document.body.classList.remove("effects");
+};
+</script>
+
+
+
+<div id="overview" class="step" data-x=0 data-y=0 data-scale="1" style="pointer-events: none;" data-rotate="0">
+</div>
+
+</div>
+
+<div id="impress-toolbar"></div>
+<div id="impress-help"></div>
+
+
+<!-- Extra modules
+     Load highlight.js, mermaid.js and markdown.js from extras.
+     See also src/plugins/extras/extras.js -->
+
+<!--
+    To make all described above really work, you need to include impress.js in the page.
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document.
+-->
+<script type="text/javascript" src="js/impress.js"></script>
+<script>impress().init();</script>
+</body>
+</html>
