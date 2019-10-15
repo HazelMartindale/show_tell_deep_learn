@@ -10,7 +10,7 @@
 
 
     <!--
-        Styles specific for this example presentation.
+        Styles specific for this presentation.
     -->
     <link href="css/showtell-slides.css" rel="stylesheet" />
     <link href="css/devopsy.css" rel="stylesheet" />
@@ -26,7 +26,7 @@
 
 <div id="impress" data-transition-duration="1000">
 
-<div id="title" class="step slide" data-x=0 data-y=0 data-scale=1 >
+<div id="title" class="step slide" data-x=0 data-y=0 data-scale=1 style="pointer-events: none;">
 	<h1> Word Embeddings and Language Modelling</h1>
 	<h3>Mikolov, Bojanowski, Xu,</h3> 
 	<div><h6 align="middle">DeepLearn 2019 </h5></div>
@@ -39,7 +39,7 @@
 		<li class="substep" style="font-size:24t;">Deep learning week long summer school in Warsaw</li>
 		<li class="substep" style="font-size:24t;">Covered many area of deep learning</li>
 		<li class="substep" style="font-size:24t;"> Organised by IRDTA: Institute for Research Development, Training and Advice</li>
-		<li class="substep" style="font-size:24t;"><p><a href="https://bigdat2020.irdta.eu">BigDat2020 winter school on big data</a></p></li>
+		<li class="substep" style="font-size:24t;"><a href="https://bigdat2020.irdta.eu" target="_blank" style="z-index: 1000;" data-preview-link>BigDat2020 winter school on big data</a></li>
 	</ul>
 	<ul>
 		<li class="substep" style="font-size:30pt;"> 2 sessions about word embeddings:</li>
@@ -50,7 +50,7 @@
 	</ul>
 </div>	
 
-<div id="whytext" class="step slide" data-x ="-240" data-y="250"  data-scale="0.05">
+<div id="whytext" class="step slide" data-x ="-240" data-y="250"  data-scale="0.05" style="pointer-events: none;">
 	<h1>Introduction</h1>
 	<ul>
 		<li class="substep" style="font-size:30pt;">Text processing is very important and the core business of internet companies</li>
@@ -60,7 +60,7 @@
 	</ul>
 </div>
 
-<div id="title1" class="step slide" data-x=0 data-y=0 data-scale=1 >
+<div id="title1" class="step slide" data-x=0 data-y=0 data-scale=1 style="pointer-events: none;">
 	<div> <h1> Word Embeddings and Language Modelling</h1></div>
 	<div><h3>Mikolov, Bojanowski, Xu,</h3> </div>
 	<div><h6 align="middle">DeepLearn 2019 </h5></div>
@@ -77,13 +77,13 @@
 		<li class="substep"><img src="images/shallow_network.PNG" width="700px" align="middle"></li>
 	</ul>
 	<ul>
-		<li class="substep">A shallow (one hidden layer) neural network. <a href="https://arxiv.org/pdf/1301.3781.pdf">see paper</a></li>
+		<li class="substep">A shallow (one hidden layer) neural network. <a href="https://arxiv.org/pdf/1301.3781.pdf" target="_blank" style="z-index: 1000;" data-preview-link>see paper</a></li>
 		<li class="substep">Training the network to predict the next word</li>
 		<li class="substep">Word vectors (or embeddings) are matrix between the input and hidden layer</li>
 	</ul>
 </div>
 
-<div id="word2vec2" class="step slide " data-x="-30" data-y="170" data-scale="0.01" >
+<div id="word2vec2" class="step slide " data-x="-30" data-y="170" data-scale="0.01" style="pointer-events: none;">
 	<h2 style="font-size:30pt;">Two modes of prediction words</h2>
 	<ol>
 		<li class="substep">Skip-gram: model probability of the context given a word</li>
@@ -105,7 +105,7 @@
 	</ol>
 </div>
 
-<div id="word2vec3" class="step slide " data-x="0" data-y="170" data-scale="0.01" >
+<div id="word2vec3" class="step slide " data-x="0" data-y="170" data-scale="0.01" style="pointer-events: none;">
 	<h2>Training Considerations</h2>
 	<ul>
 		<li class="substep">Neural network is trained using standard stochastic gradient descent and back propagation</li>
@@ -117,14 +117,14 @@
 	</ul>
 </div>
 
-<div id="word2vec4" class="step slide" data-x="30" data-y="170" data-scale="0.01" >
+<div id="word2vec4" class="step slide" data-x="30" data-y="170" data-scale="0.01" style="pointer-events: none;">
 	<h2>How should you evaluate the word vectors?</h2>
 	<ul style="list-style-type:none;">
 		<li class="substep"><img src="images/word_regularities.PNG" width="800px"></li>
 	</ul>
 </div>
 
-<div id="word2vec5" class="step slide" data-x="60" data-y="170" data-scale="0.01" >
+<div id="word2vec5" class="step slide" data-x="60" data-y="170" data-scale="0.01" style="pointer-events: none;">
 	<h2>Word regularities might give better assesment of the word vectors</h2>
 	<ul>
 		<li class="substep">Analogies: </li>
@@ -141,7 +141,7 @@
 	</ul>
  </div>
  
-<div id="word2vec6" class="step slide" data-x="90" data-y="170" data-scale="0.01" >
+<div id="word2vec6" class="step slide" data-x="90" data-y="170" data-scale="0.01" style="pointer-events: none;">
 	<h2>Also can do word 'algebra'</h2>
 	<ul style="list-style-type:none;">
 		<li class="substep"><img src="images/word_algebra.PNG" width="800px"></li>
@@ -157,13 +157,13 @@
 
 <h1 >fastText</h1>
 <ul>
-<li class="substep"><a href="https://arxiv.org/pdf/1607.04606v2.pdf">Enriching Word Vectors with Subword Information Bojanowski, Grave, Joulin, Mikolov. TACL 2017 </a></li>
+<li class="substep"><a href="https://arxiv.org/pdf/1607.04606v2.pdf" target="_blank" style="z-index: 1000;" data-preview-link>Enriching Word Vectors with Subword Information Bojanowski, Grave, Joulin, Mikolov. TACL 2017 </a></li>
 <li class="substep"> An extension to word2vec - includes character level information</li>
 <li class="substep">Developed at Facebook</li>
 </ul>
 </div>
 
-<div id="fasttext1" class="step slide " data-x="-30" data-y="220" data-scale="0.01" >
+<div id="fasttext1" class="step slide " data-x="-30" data-y="220" data-scale="0.01" style="pointer-events: none;">
 <h2>Subword information</h2>
 <ul>
 <li class="substep">Important for suffixes and grammatical varations</li>
@@ -185,10 +185,10 @@
 </div> -->
 
 
-<div id="fasttext3" class="step slide " data-x="30" data-y="220" data-scale="0.01" >
+<div id="fasttext3" class="step slide " data-x="30" data-y="220" data-scale="0.01">
 	<h2 style="font-size=30">Training Techniques</h2>
 	<ul >
-		<li class="substep" style="font-size=26; width: 900px;"><a href="http://www.lrec-conf.org/proceedings/lrec2018/pdf/721.pdf">Advances in Pre-Training Distributed Word Representations: Mikolov2018 </a></li>
+		<li class="substep" style="font-size=26; width: 900px;"><a href="http://www.lrec-conf.org/proceedings/lrec2018/pdf/721.pdf" target="_blank" style="z-index: 1000;" data-preview-link>Advances in Pre-Training Distributed Word Representations: Mikolov2018 </a></li>
 		<li class="substep" style="font-size=28"> Using some known tricks can improve word vectors</li>
 	</ul>
 	<ul>
@@ -206,7 +206,7 @@
 	</ul>
 </div>
 
-<div id="fasttest4" class="step slide" data-x="60" data-y="220" data-scale="0.01" >
+<div id="fasttest4" class="step slide" data-x="60" data-y="220" data-scale="0.01" style="pointer-events: none;">
 	<h2>Pretrained fastText Overview</h2>
 	<ul>
 		<li class="substep">Facebook - Mikolov et.al. (2018)</li>
@@ -215,7 +215,7 @@
 		<li class="substep">Embeddings: 1x300 dimensional word vectors</li>
 	</ul>
 </div>
-<div id="fasttest5" class="step slide" data-x="90" data-y="220" data-scale="0.01" >
+<div id="fasttest5" class="step slide" data-x="90" data-y="220" data-scale="0.01" style="pointer-events: none;">
 	<h2>fastText for language modelling and classification</h2>
 	<ul>
 		<li class="substep">Language Modelling: A statistical model of the probability model of language</li>
@@ -231,7 +231,7 @@
 </div>
 
 
-<div id="Elmo1" class="step slide" data-x="-50" data-y="270" data-scale="0.01" >
+<div id="Elmo1" class="step slide" data-x="-50" data-y="270" data-scale="0.01" style="pointer-events: none;">
 <h2 style="font-size:29pt;">ELMo (Embeddings from Language Models)</h2>
 <ul>
 <li class="substep">ELMo uses both word and context information </li>
@@ -242,7 +242,7 @@
 </ul>
 </div>
 
-<div id="Elmo2" class="step slide" data-x="-30" data-y="270" data-scale="0.01" >
+<div id="Elmo2" class="step slide" data-x="-30" data-y="270" data-scale="0.01" style="pointer-events: none;">
 <h2 style="font-size:29pt;">ELMo (Embeddings from Language Models)</h2>
 <ul>
 <li class="substep">Elmo uses Bi-directional LSTM models </li>
@@ -258,7 +258,7 @@
 <div id="Elmo3" class="step slide" data-x="0" data-y="270" data-scale="0.01" >
 <h2>Pretrained ELMo Overview</h2>
 <ul>
-<li class="substep">Washington Uni/Microsoft/Allen Inst - <a href="Deep contextualized word representations">Peters et.al. (2018)</a></li>
+<li class="substep">Washington Uni/Microsoft/Allen Inst - <a href="https://arxiv.org/pdf/1802.05365.pdf" target="_blank" style="z-index: 1000;" data-preview-link>Peters et.al. (2018)</a></li>
 <li class="substep">Contextual, Bidirectional</li>
 <li class="substep">Dataset: 1Billion word Benchmark</li>
 <li class="substep">Embeddings: 3x1024 dimensional word matrices</li>
@@ -285,17 +285,17 @@
 	</div>
 	<div class="column">
 		<ul>
-			<li class="substep" style="font-size:18pt;">Generated huge interest and described as major breakthrough for NLP, <a href="arxiv.org/abs/1810.04805"> see Paper</a></li>
+			<li class="substep" style="font-size:18pt;">Generated huge interest and described as major breakthrough for NLP, <a href="https://arxiv.org/pdf/1810.04805.pdf" target="_blank" style="z-index: 1000;" data-preview-link> see Paper</a></li>
 			<li class="substep" style="font-size:18pt;">Is a deep learning technique using bidirectional transformers</li>
 			<li class="substep" style="font-size:18pt;">Not going to explain details about how BERT works</li>
-			<li class="substep" style="font-size:18pt;"><a href="http://jalammar.github.io/illustrated-bert/">Blog describing BERT: http://jalammar.github.io/illustrated-bert/</a></li>
+			<li class="substep" style="font-size:18pt;"><a href="http://jalammar.github.io/illustrated-bert/" target="_blank" style="z-index: 1000;" data-preview-link>Blog describing BERT: http://jalammar.github.io/illustrated-bert/</a></li>
 		</ul>
 	</div>
 </div>
 
 </div>
 
-<div id="Bert2" class="step slide " data-x="-30" data-y="320" data-scale="0.01" >
+<div id="Bert2" class="step slide " data-x="-30" data-y="320" data-scale="0.01" style="pointer-events: none;">
 <h2>How is BERT trained?</h2>
 
 		<ul>
@@ -306,7 +306,7 @@
 
 </div>
 
-<div id="Bert3" class="step slide" data-x="0" data-y="320" data-scale="0.01" >
+<div id="Bert3" class="step slide" data-x="0" data-y="320" data-scale="0.01" style="pointer-events: none;">
 <h2>Using BERT for Embeddings</h2>
 <div class="row">
 	<div class="column">
@@ -322,7 +322,7 @@
 	</div>
 </div>
 
-<div id="Bert_embed" class="step slide" data-x="-1.5" data-y="319.875" data-scale="0.005" >
+<div id="Bert_embed" class="step slide" data-x="-1.5" data-y="319.875" data-scale="0.005" style="pointer-events: none;">
 	<div><img src='images/bert_embeddings.PNG' width='600px'></div>
 </div>
 
@@ -344,12 +344,12 @@
 	</div>
 	<ul>
 		<li class="substep">BERT (and other contextual vectors) can't do word level similarity</li>
-		<li class="substep"><a href=">https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/">
+		<li class="substep"><a href="https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/" target="_blank" style="z-index: 1000;" data-preview-link>
 		https://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/ </a></li>
 	</ul>
 </div>
 
-<div id="Bert5" class="step slide" data-x="30" data-y="320" data-scale="0.01" >
+<div id="Bert5" class="step slide" data-x="30" data-y="320" data-scale="0.01" style="pointer-events: none;">
 <h2>Using BERT Fine tuning</h2>
 <ul>
 <li class="substep">Used to give state of art results</li>
@@ -360,7 +360,7 @@
 </div>
 
 
-<div id="Bert6" class="step slide" data-x="60" data-y="320" data-scale="0.01" >
+<div id="Bert6" class="step slide" data-x="60" data-y="320" data-scale="0.01" style="pointer-events: none;">
 <h2>Pretrained BERT Base Overview</h2>
 <ul>
 <li class="substep">Google - Devlin et.al. (2018)</li>
@@ -381,19 +381,19 @@
 
 </div>
 
-<div id="multi_res" class="step slide" data-x="275" data-y="230" data-scale="0.01">
+<div id="multi_res" class="step slide" data-x="275" data-y="230" data-scale="0.01" >
 <h2 style="font-size:34px;">Multi-Resolution Models for Learning Multilevel Abstract Representation of Text</h2>
 <h3 style="font-size:28px;">Xiaowei Xu</h3>
 <ul>
 <li class="substep">Using word vector each model has strengths and weeknesses</li>
-<li class="substep">Investigated using a mixture of all word embeddings <a href="https://arxiv.org/pdf/1902.00663.pdf">see paper</a></li>
+<li class="substep">Investigated using a mixture of all word embeddings <a href="https://arxiv.org/pdf/1902.00663.pdf"  target="_blank" style="z-index: 1000;" data-preview-link>see paper</a></li>
 </ul>
 <ul style="list-style-type:none;">
 <li class="substep" align='middle'><img src='images/mr_illustration.PNG' width='400px'></li>
 </ul>
 </div>
 
-<div id="multi_res1" class="step slide" data-x="300" data-y="230" data-scale="0.01">
+<div id="multi_res1" class="step slide" data-x="300" data-y="230" data-scale="0.01" style="pointer-events: none;">
 <h2 style="font-size:34px;">Multi-Resolution Models for Learning Multilevel Abstract Representation of Text</h2>
 <ul style="list-style-type:none;">
 <li class="substep" align='middle'><img src='images/mr_diagram.PNG' width='400px'></li>
@@ -403,7 +403,7 @@
 <li class="substep">Produced improvement on an significantly improve the performance of ad-hoc retrieval task</li>
 </div>
 
-<div id="somequestions" class="step slide" data-x="330" data-y="230" data-scale="0.01">
+<div id="somequestions" class="step slide" data-x="330" data-y="230" data-scale="0.01" style="pointer-events: none;">
 <h2>How could we use word embeddings and language model</h2>
 <ul>
 <li class="substep">Is it ok to just use one type of vector/model?</li>
@@ -418,7 +418,7 @@
 </ul>
 </div>
 
-<div id="somequestions2" class="step slide" data-x="360" data-y="230" data-scale="0.01">
+<div id="somequestions2" class="step slide" data-x="360" data-y="230" data-scale="0.01" style="pointer-events: none;">
 <h2>How could we use word embeddings and language model</h2>
 	<ul>
 	<li class="substep">Could we fine tune a BERT language model for a specific task? </li>
